@@ -39,10 +39,10 @@ const getServiceList = async (dispatch) => {
 
 const getUserList = async (dispatch) => {
     try {
-        const { data } = await UserService.getAll();
-        dispatch(UserAction.successUserList(data))
+        const { data } = await UserService.getAllServiceProviders();
+        dispatch(UserAction.successServiceProviderList(data))
     } catch (error) {
-        dispatch(UserAction.failureUserList(error));
+        dispatch(UserAction.failureServiceProviderList(error));
     }
 };
 
@@ -63,8 +63,7 @@ export default function ServicePage() {
     useEffect(onInitialize(dispatch), []);
     const serviceTypeList = useSelector(state => state.serviceType.serviceTypeList)
     const serviceList = useSelector(state => state.service.serviceList)
-    const userList = useSelector(state => state.user.userList)
-    console.log(serviceTypeList)
+    const serviceProviderList = useSelector(state => state.user.serviceProviderList)
 
     const emptyService = {
         userId: '',
@@ -231,7 +230,9 @@ export default function ServicePage() {
         });
     } 
     
-    const onCreateSuccess = () => {
+    const onCreateSuccess = async () => {
+        await getServiceList(dispatch);
+
         setUiState({
             ...uiState,
             showCreateModal: false
@@ -283,7 +284,7 @@ export default function ServicePage() {
                 onSuccess={uiState.targetService ? onUpdateSuccess : onCreateSuccess}
                 isNew={uiState.targetService ? false : true}
                 service={uiState.targetService ? uiState.targetService : emptyService}
-                userList={userList.result}
+                userList={serviceProviderList.result}
                 serviceTypeList={serviceTypeList.result}>
 
             </ServiceForm>

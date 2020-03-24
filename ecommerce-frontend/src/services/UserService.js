@@ -41,5 +41,10 @@ export default {
     delete: async (id) => {
         const url = `${apiUrl}/user/deleteOne/${id}`;
         return await axios.delete(url)
+    },
+
+    getAllServiceProviders: async () => {
+        const url = `${apiUrl}/user/serviceProviders`;
+        return await axios.get(url);
     }
 };

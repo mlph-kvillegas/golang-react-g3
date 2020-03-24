@@ -39,6 +39,7 @@ func main() {
 		userAPI.DELETE(deleteOneUrl, controller.DeleteUser)
 		userAPI.PUT(updateOneUrl, controller.UpdateUser)
 		userAPI.POST("/createUser", controller.CreateUser)
+		userAPI.GET("/serviceProviders", controller.GetServiceProviders)
 	}
 
 	serviceTypeAPI := router.Group("/service_type")

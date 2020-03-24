@@ -121,3 +121,21 @@ func CreateUser(c *gin.Context) {
 	c.BindJSON(&user)
 	repository.UserSave(user)
 }
+
+// GetServiceProviders - get all user with type SERVICE_PROVIDERS
+func GetServiceProviders(c *gin.Context) {
+
+	users, err := repository.GetAllServiceProviders()
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": err,
+		})
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		resultConstant: users,
+		"count":        len(users),
+	})
+
+}

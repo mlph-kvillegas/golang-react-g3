@@ -29,7 +29,6 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
 
     });
 
-    console.log(serviceTypeList)
     const onSubmit = async (event) => {
         event.preventDefault();
 
@@ -64,7 +63,6 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
         })
     }
    
-
     useEffect(() => {
         setState({
             userId: service.UserID,
@@ -98,7 +96,7 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
                             onChange={updateField}
                             input={<Input />}
                         >
-                        { userList !=null && userList.map(user => <MenuItem value={user.ID}>{user.FirstName + " " + user.LastName}</MenuItem>) }
+                        { userList !=null && userList.map(user => <MenuItem key={user.ID} value={user.ID}>{user.FirstName + " " + user.LastName}</MenuItem>) }
                        
                     </Select>
                 </FormControl>
@@ -112,7 +110,7 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
                             onChange={updateField}
                             input={<Input />}
                         >
-                        { serviceTypeList !=null && serviceTypeList.map(serviceType => <MenuItem value={serviceType.ID}>{serviceType.ServiceName}</MenuItem>) }
+                        { serviceTypeList !=null && serviceTypeList.map(serviceType => <MenuItem  key={serviceType.ID} value={serviceType.ID}>{serviceType.ServiceName}</MenuItem>) }
                     </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
