@@ -152,3 +152,26 @@ func UserGetOne(id int) (user entity.User, err error) {
 	defer db.Close()
 	return
 }
+
+// GetAllServiceProviders - get all users with service provider type
+func GetAllServiceProviders() (users []entity.User, err error) {
+	db := util.DbConnect()
+
+	result, err := db.Query(`SELECT id, first_name, last_name,
+		email, username, address, contact_number, bio, type
+		FROM user WHERE NOT is_archived AND type = 'SERVICE_PROVIDER'`)
+
+	if err != nil {
+		return
+	}
+
+	for result.Next() {
+		var user entity.User
+		result.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Email, &user.UserName, &user.Address, &user.ContactNumber, &user.Bio, &user.Type)
+		users = append(users, user)
+	}
+
+	defer result.Close()
+	defer db.Close()
+	return
+}

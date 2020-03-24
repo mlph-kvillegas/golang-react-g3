@@ -4,8 +4,7 @@ const initialState = {
     serviceTypeList: []
 }
 
-export default (state, action) => {
-    state = initialState
+export default (state = initialState, action) => {
     switch(action.type) {
         case ActionType.SERVICE_TYPE_LIST_SUCCESS: {
             return {
