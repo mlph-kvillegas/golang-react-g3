@@ -68,6 +68,7 @@ func SetupDatabase() {
 			is_archived TINYINT(1),
 			contact_number VARCHAR(255),
 			price VARCHAR(255),
+			image LONGTEXT,
 			description VARCHAR(255),
 			CONSTRAINT fk_user
 			FOREIGN KEY (user_id)

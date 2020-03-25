@@ -14,6 +14,7 @@ func CreateService(c *gin.Context) {
 	var service entity.Service
 
 	c.BindJSON(&service)
+
 	repository.ServiceSave(service)
 }
 

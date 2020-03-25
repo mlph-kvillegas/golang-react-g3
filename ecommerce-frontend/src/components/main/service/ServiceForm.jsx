@@ -3,6 +3,8 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button,
     InputLabel, Select, Input, MenuItem, makeStyles, TextareaAutosize} from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import { ServiceService } from 'services';
+import Q from 'q';
+
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -25,21 +27,36 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
         serviceTypeId: service.ServiceTypeID,
         contactNumber: service.ContactNumber,
         price: service.Price,
-        description: service.Description
-
+        description: service.Description,
+        image: service.Image,
+        tmp_image: service.Image
     });
+
+    const getBase64 = async (file) => {
+        var reader  = new FileReader();
+        reader.readAsDataURL(file);
+        var deferred = Q.defer();
+        reader.onload = await function () {
+            deferred.resolve(reader.result);
+        };
+        return deferred.promise;
+    }
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            if (isNew) {
-                await ServiceService.create(form)
-            } else {
-                await ServiceService.update(service.ID, form)
-            }
-            onReset()
-            onSuccess()
+            Promise.resolve(getBase64(form.image)).then( async(iconBase64) => {
+                form.image = iconBase64
+                console.log(form)
+                if (isNew) {
+                    await ServiceService.create(form)
+                } else {
+                    await ServiceService.update(service.ID, form)
+                }
+                onReset()
+                onSuccess()
+            });
         } catch (error) {
             console.log(error)
             onCancel()
@@ -52,6 +69,20 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
           [e.target.name]: e.target.value
         });
     };
+
+    const imageChange = (event) => {
+        if (event) {
+            const file = event.target.files[0];
+            if (file) {
+              setState({
+                  ...form,
+                  tmp_image: event.target.value,
+                  image: file
+              });
+            }   
+        }
+    };
+
     
     const onReset = () => {
         setState({
@@ -114,16 +145,20 @@ export default function ServiceForm ({isShown, onCancel, onSuccess, isNew, servi
                     </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Contact Number</InputLabel>
+                    <InputLabel className="demo-dialog-label">Contact Number</InputLabel>
                     <Input type="number" name="contactNumber" value={form.contactNumber || ""} onChange={updateField}/>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Price</InputLabel>
+                    <InputLabel className="demo-dialog-label">Price</InputLabel>
                     <Input type="number" name="price" value={form.price || ""} onChange={updateField}/>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                    <label id="demo-dialog-label">Description</label>
+                    <label className="demo-dialog-label">Description</label>
                     <TextareaAutosize className={classes.textAreaStyle} name="description" value={form.description || ""} onChange={updateField}/>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                    <InputLabel className="demo-dialog-label">Image</InputLabel>
+                    <Input disableUnderline={true} type="file" name="image" value={form.tmp_image || ""} onChange={imageChange}/>
                 </FormControl>
             </DialogContent>
             <DialogActions>

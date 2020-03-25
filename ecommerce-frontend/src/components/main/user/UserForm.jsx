@@ -101,47 +101,47 @@ export default function UserForm ({isShown, onCancel, onSuccess, isNew, userData
             <DialogTitle> {isNew ? 'Create' : 'Update'} User </DialogTitle>
             <DialogContent className={classes.container}> 
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">First Name</InputLabel>
+                    <InputLabel className="demo-dialog-label">First Name</InputLabel>
                     <Input type="text" name="firstName" value={form.firstName || ""} onChange={updateField}/>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Last Name</InputLabel>
+                    <InputLabel className="demo-dialog-label">Last Name</InputLabel>
                     <Input type="text" name="lastName" value={form.lastName || ""} onChange={updateField}/>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Email</InputLabel>
+                    <InputLabel className="demo-dialog-label">Email</InputLabel>
                     <Input type="text" name="email" value={form.email || ""} onChange={updateField}/>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">User Name</InputLabel>
+                    <InputLabel className="demo-dialog-label">User Name</InputLabel>
                     <Input type="text" name="userName" value={form.userName || ""} onChange={updateField}/>
                 </FormControl>
                 { isNew && <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Password</InputLabel>
+                    <InputLabel className="demo-dialog-label">Password</InputLabel>
                     <Input type="password" name="password" value={form.password || ""} onChange={updateField}/>
                 </FormControl> }
                 
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Address</InputLabel>
+                    <InputLabel className="demo-dialog-label">Address</InputLabel>
                     <Input type="text" name="address" value={form.address || ""} onChange={updateField}/>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-dialog-label">Contact Number</InputLabel>
+                    <InputLabel className="demo-dialog-label">Contact Number</InputLabel>
                     <Input type="number" name="contactNumber" value={form.contactNumber || ""} onChange={updateField}/>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                    <label id="demo-dialog-label">Description</label>
+                    <label className="demo-dialog-label">Bio</label>
                     <TextareaAutosize className={classes.textAreaStyle} name="bio" value={form.bio || ""} onChange={updateField}/>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
-                    <label id="demo-dialog-label">User Type</label>
+                    <label className="demo-dialog-label">User Type</label>
                     <Select
                         labelId="demo-dialog-select-label"
                         id="demo-dialog-select"
