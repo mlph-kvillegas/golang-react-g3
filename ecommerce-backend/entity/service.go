@@ -8,6 +8,7 @@ type Service struct {
 	IsArchived    bool   `db:"is_archived"`
 	ContactNumber string `db:"contact_number"`
 	Price         string `db:"price"`
+	Image         string `db:"image"`
 	Description   string `db:"description"`
 	UserName      string `db:"user_name"`
 	ServiceName   string `db:"service_name"`

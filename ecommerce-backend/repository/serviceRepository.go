@@ -11,8 +11,9 @@ import (
 func ServiceSave(service entity.Service) {
 	db := util.DbConnect()
 
-	result, err := db.Exec(`INSERT INTO SERVICE(user_id, service_type_id, is_archived, contact_number, price, description)
-		VALUES (?, ?, ?, ?, ?, ?)`, service.UserID, service.ServiceTypeID, 0, service.ContactNumber, service.Price, service.Description)
+	result, err := db.Exec(`INSERT INTO SERVICE(user_id, service_type_id, is_archived, contact_number, price, image, description)
+		VALUES (?, ?, ?, ?, ?, ?, ?)`, service.UserID, service.ServiceTypeID, 0, service.ContactNumber,
+		service.Price, service.Image, service.Description)
 
 	if err != nil {
 		panic(err)
@@ -31,7 +32,9 @@ func ServiceGetAll() (services []entity.Service, err error) {
 		SELECT service.id as id, service.user_id as user_id, service.service_type_id as service_type_id,
 		CONCAT(user.first_name, ' ', user.last_name) as user_name, 
 		service_type.service_name as service_name,
-		service.contact_number, service.price, service.description
+		service.contact_number, service.price, 
+		service.image as image,
+		service.description
 		FROM service
 		JOIN user ON user.ID = service.user_id
 		JOIN service_type ON service_type.id = service.service_type_id
@@ -45,7 +48,7 @@ func ServiceGetAll() (services []entity.Service, err error) {
 	for result.Next() {
 		var service entity.Service
 		result.Scan(&service.ID, &service.UserID, &service.ServiceTypeID, &service.UserName, &service.ServiceName, &service.ContactNumber,
-			&service.Price, &service.Description)
+			&service.Price, &service.Image, &service.Description)
 		services = append(services, service)
 	}
 
@@ -62,14 +65,16 @@ func ServiceGetOne(id int) (service entity.Service, err error) {
 		SELECT service.id as id, service.user_id as user_id, service.service_type_id as service_type_id,
 		CONCAT(user.first_name, ' ', user.last_name) as user_name, 
 		service_type.service_name as service_name,
-		service.contact_number, service.price, service.description
+		service.contact_number, service.price,
+		service.image as image,
+		service.description
 		FROM service
 		JOIN user ON user.ID = service.user_id
 		JOIN service_type ON service_type.id = service.service_type_id
 		WHERE service.is_archived = false AND service.id=?
 	`, id)
 	err = result.Scan(&service.ID, &service.UserID, &service.ServiceTypeID, &service.UserName, &service.ServiceName, &service.ContactNumber,
-		&service.Price, &service.Description)
+		&service.Price, &service.Image, &service.Description)
 
 	if err != nil {
 		return
@@ -85,8 +90,9 @@ func ServiceUpdate(id int, service entity.Service) {
 
 	result, err := db.Exec(`UPDATE SERVICE SET
 		user_id=?,
-		service_type_id=?, contact_number=?, price=?, description=?
-		WHERE id=?`, service.UserID, service.ServiceTypeID, service.ContactNumber, service.Price, service.Description, id)
+		service_type_id=?, contact_number=?, price=?, description=?, image=?
+		WHERE id=?`, service.UserID, service.ServiceTypeID, service.ContactNumber, service.Price,
+		service.Description, service.Image, id)
 
 	if err != nil {
 		panic(err)

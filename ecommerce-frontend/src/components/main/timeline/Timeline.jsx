@@ -8,42 +8,42 @@ class Timeline extends React.Component {
         var services = [
             {
                 name : 'mani/pedi',
-                image : 'https://media.giphy.com/media/haE44GP3fL7cA/giphy.gif',
+                image : 'https://img.grouponcdn.com/deal/4PmK93ZaCPgmmXXABSTwPmoHA8Cx/4P-2048x1229/v1/c700x420.jpg',
                 description : 'best mani/pedi',
                 price : 750,
                 id : 1
             },
             {
                 name : 'drayber',
-                image : 'https://media2.giphy.com/media/3o6ZtcyMhpwGRVUWyI/giphy.gif',
+                image : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.groupon.com%2Fdeals%2Fnew-beverly-hills-hair-salon-3&psig=AOvVaw282i6_d_zyuBFoED4SUvht&ust=1585208530331000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjbhpKQtegCFQAAAAAdAAAAABAD',
                 description : 'T Super',
                 price : 1000,
                 id : 2
             },
             {
                 name : 'tubero',
-                image : 'https://media1.giphy.com/media/kOVUnMgWHTvQQ/giphy.gif',
+                image : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.groupon.com%2Fdeals%2Fnew-beverly-hills-hair-salon-3&psig=AOvVaw282i6_d_zyuBFoED4SUvht&ust=1585208530331000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjbhpKQtegCFQAAAAAdAAAAABAD',
                 description : 'tiga tubo',
                 price : 500,
                 id : 3
             },
             {
                 name : 'third wheel',
-                image : 'https://media1.tenor.com/images/87b755da71f7edb84bc890f205abf7e4/tenor.gif?itemid=4821488',
+                image : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.groupon.com%2Fdeals%2Fnew-beverly-hills-hair-salon-3&psig=AOvVaw282i6_d_zyuBFoED4SUvht&ust=1585208530331000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjbhpKQtegCFQAAAAAdAAAAABAD',
                 description : '3rd wheel ng bayan. tiga picture. tiga order. tiga bitbit',
                 price : 2500,
                 id : 4
             },
             {
                 name : 'waterboy',
-                image : 'https://media1.giphy.com/media/l0Exdwlo49Kf3XEJ2/giphy.gif',
+                image : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.groupon.com%2Fdeals%2Fnew-beverly-hills-hair-salon-3&psig=AOvVaw282i6_d_zyuBFoED4SUvht&ust=1585208530331000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjbhpKQtegCFQAAAAAdAAAAABAD',
                 description : 'di ka mauuhaw sa laro. kakababa mo lang ng baso mo, refill na agad',
                 price : 200,
                 id : 5
             },
             {
                 name : 'pianista',
-                image : 'https://i.pinimg.com/originals/ec/c1/e6/ecc1e6b816cedefd5b22a829df4cec39.gif',
+                image : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.groupon.com%2Fdeals%2Fnew-beverly-hills-hair-salon-3&psig=AOvVaw282i6_d_zyuBFoED4SUvht&ust=1585208530331000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjbhpKQtegCFQAAAAAdAAAAABAD',
                 description : 'magbibigay ng background music sa buhay mo. may sound epeks kada kilos mo',
                 price : 600,
                 id : 6

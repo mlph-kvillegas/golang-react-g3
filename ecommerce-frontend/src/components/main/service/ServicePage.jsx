@@ -70,7 +70,8 @@ export default function ServicePage() {
         serviceTypeId: '',
         contactNumber: '',
         description: '',
-        price: ''
+        price: '',
+        image: ''
     }
 
     const [uiState, setUiState] = useState({
