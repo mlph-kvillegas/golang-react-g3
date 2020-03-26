@@ -9,6 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const result string = "result"
+
 // CreateService - create service
 func CreateService(c *gin.Context) {
 	var service entity.Service
@@ -45,8 +47,8 @@ func GetAllService(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": services,
-		"count":  len(services),
+		result:  services,
+		"count": len(services),
 	})
 }
 
@@ -70,7 +72,7 @@ func GetOneService(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": service,
+		result: service,
 	})
 }
 
@@ -85,4 +87,29 @@ func DeleteService(c *gin.Context) {
 	}
 
 	repository.ServiceDelete(ID)
+}
+
+// BookService - book a service
+func BookService(c *gin.Context) {
+	var bookService entity.BookedService
+
+	c.BindJSON(&bookService)
+
+	repository.BookService(bookService)
+}
+
+// GetAllBookService - get all booked services
+func GetAllBookService(c *gin.Context) {
+	services, err := repository.GetAllBookService()
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": err,
+		})
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		result:  services,
+		"count": len(services),
+	})
 }

@@ -157,8 +157,7 @@ func UserGetOne(id int) (user entity.User, err error) {
 func GetAllServiceProviders() (users []entity.User, err error) {
 	db := util.DbConnect()
 
-	result, err := db.Query(`SELECT id, first_name, last_name,
-		email, username, address, contact_number, bio, type
+	result, err := db.Query(`SELECT id, first_name, last_name, email, username, address, contact_number, bio, type
 		FROM user WHERE NOT is_archived AND type = 'SERVICE_PROVIDER'`)
 
 	if err != nil {
@@ -167,7 +166,8 @@ func GetAllServiceProviders() (users []entity.User, err error) {
 
 	for result.Next() {
 		var user entity.User
-		result.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Email, &user.UserName, &user.Address, &user.ContactNumber, &user.Bio, &user.Type)
+		result.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Email,
+			&user.UserName, &user.Address, &user.ContactNumber, &user.Bio, &user.Type)
 		users = append(users, user)
 	}
 
