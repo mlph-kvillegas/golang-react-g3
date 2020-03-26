@@ -10,6 +10,8 @@ type Service struct {
 	Price         string `db:"price"`
 	Image         string `db:"image"`
 	Description   string `db:"description"`
+	TotalRating   uint32 `db:"total_rating"`
+	TotalReviewer uint32 `db:"total_reviewer"`
 	UserName      string `db:"user_name"`
 	ServiceName   string `db:"service_name"`
 }

@@ -34,15 +34,15 @@ function ServiceBox (props) {
             <CardMedia
                 className={cx(styles.media, mediaStyles.root)} 
                 image={
-                    props.image
+                    props.Image
                 }
             />
             <CardContent className={styles.content}>
                 <TextInfoCardContent
                 classes={textCardContentStyles}
-                overline={props.price}
-                heading={props.name}
-                body={props.description}
+                overline={props.Price}
+                heading={props.ServiceName}
+                body={props.Description}
                 />
             </CardContent>
         </Card>

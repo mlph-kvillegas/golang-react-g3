@@ -70,6 +70,8 @@ func SetupDatabase() {
 			price VARCHAR(255),
 			image LONGTEXT,
 			description VARCHAR(255),
+			total_rating int,
+			total_reviewer int,
 			CONSTRAINT fk_user
 			FOREIGN KEY (user_id)
 				REFERENCES user(id),
@@ -88,6 +90,42 @@ func SetupDatabase() {
 		INSERT IGNORE INTO USER(first_name, last_name, email, username, password, address, is_archived, contact_number, bio, type)
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, "Mang Jose", "Administrator", "mang@jose.com", "mangjose", "password123",
 		"Rooftop", 0, "", "", "ADMIN")
+
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = db.Exec(`
+		CREATE TABLE IF NOT EXISTS BOOKED_SERVICE (
+			id int NOT NULL AUTO_INCREMENT,
+			user_id int,
+			service_id int,
+			status TINYINT(1),
+			CONSTRAINT fk_booked_user
+			FOREIGN KEY (user_id)
+				REFERENCES user(id),
+			CONSTRAINT fk_booked_service
+			FOREIGN KEY (service_id)
+				REFERENCES service(id),
+			PRIMARY KEY (id)
+		)
+	`)
+
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = db.Exec(`
+		CREATE TABLE IF NOT EXISTS COMMENT (
+			id int NOT NULL AUTO_INCREMENT,
+			service_id int,
+			comment VARCHAR(255),
+			CONSTRAINT fk_comment_service
+			FOREIGN KEY (service_id)
+				REFERENCES service(id),
+			PRIMARY KEY (id)
+		)
+	`)
 
 	if err != nil {
 		panic(err)
