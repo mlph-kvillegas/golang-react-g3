@@ -8,5 +8,6 @@ export default {
     USERS_PAGE: '/mangjose/users',
     SERVICES_PAGE: '/mangjose/services',
     SERVICE_TYPES_PAGE: '/mangjose/service-types',
-    TIMELINE: '/mangjose/timeline'
+    TIMELINE: '/mangjose/timeline',
+    BOOKED_SERVICE: '/mangjose/booked_services'
 }

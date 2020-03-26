@@ -28,5 +28,15 @@ export default {
     delete: async (id) => {
         const url = `${apiUrl}/service/deleteOne/${id}`;
         return await axios.delete(url)
+    },
+
+    bookService: async (bookedService) => {
+        const url = `${apiUrl}/service/bookedService`;
+        return await axios.post(url, bookedService)
+    },
+
+    getAllBookService: async () => {
+        const url = `${apiUrl}/service/bookedService/getAll`;
+        return await axios.get(url)
     }
 };

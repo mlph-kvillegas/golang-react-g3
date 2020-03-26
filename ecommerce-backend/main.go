@@ -58,6 +58,8 @@ func main() {
 		serviceAPI.GET(getOneUrl, controller.GetOneService)
 		serviceAPI.PUT(updateOneUrl, controller.UpdateService)
 		serviceAPI.DELETE(deleteOneUrl, controller.DeleteService)
+		serviceAPI.POST("/bookedService", controller.BookService)
+		serviceAPI.GET("/bookedService/getAll", controller.GetAllBookService)
 	}
 
 	router.Run(":9000")

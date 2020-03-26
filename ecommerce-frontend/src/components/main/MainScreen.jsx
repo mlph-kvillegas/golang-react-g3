@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { List, ListItemIcon,
     ListItemText, Divider, Toolbar, Typography,
     AppBar, CssBaseline, Drawer, MenuItem, IconButton, Menu } from '@material-ui/core'
-import { Home, Group, FormatListBulleted, Work, AccountCircle } from '@material-ui/icons'
+import { Home, Group, FormatListBulleted, Work, AccountCircle, Book } from '@material-ui/icons'
 import { Route, Switch, Redirect, NavLink} from 'react-router-dom'
 import RoutePaths from 'constants/RoutePaths'
 import Dashboard from 'components/main/Dashboard'
@@ -15,6 +15,7 @@ import Logo from '../../resources/images/logo.png'
 import ls from 'local-storage'
 import {Link} from 'react-router-dom'
 import Timeline from './timeline/Timeline';
+import BookedServicePage from './service/BookedServicePage';
 
 
 const useStyles = makeStyles(theme => ({
@@ -89,6 +90,13 @@ export default function MainScreen() {
                     <StyledMenuItem className={isActive(RoutePaths.TIMELINE) ? classes.activeLink : ''}>
                         <ListItemIcon><Home /></ListItemIcon>
                         <ListItemText> Timeline </ListItemText>
+                    </StyledMenuItem>                    
+                </NavLink>
+
+                <NavLink to={ RoutePaths.BOOKED_SERVICE } className={classes.navLink}>
+                    <StyledMenuItem className={isActive(RoutePaths.BOOKED_SERVICE) ? classes.activeLink : ''}>
+                        <ListItemIcon><Book /></ListItemIcon>
+                        <ListItemText> Booked Services </ListItemText>
                     </StyledMenuItem>                    
                 </NavLink>
 
@@ -196,6 +204,7 @@ export default function MainScreen() {
                     <Route path={ RoutePaths.USERS_PAGE } component={ UserPage } />
                     <Route path={ RoutePaths.SERVICES_PAGE } component={ ServicePage } />
                     <Route path={ RoutePaths.SERVICE_TYPES_PAGE } component={ ServiceTypePage } />
+                    <Route path={ RoutePaths.BOOKED_SERVICE } component={ BookedServicePage } />
                     <Redirect to={ RoutePaths.MAIN } />
                 </Switch>
 
